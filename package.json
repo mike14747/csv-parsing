@@ -1,0 +1,44 @@
+{
+    "name": "csv-parsing",
+    "version": "1.0.0",
+    "description": "Testing out csv parsing without an npm package.",
+    "main": "index.js",
+    "scripts": {
+        "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+        "start:dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+        "start:prod": "node server.js",
+        "client": "cd client && npm run start",
+        "server": "nodemon server.js",
+        "install": "if-env NODE_ENV=production || npm run install:dev",
+        "install:dev": "cd client && npm install",
+        "build": "cd client && npm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mike14747/csv-parsing.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mike14747/csv-parsing/issues"
+    },
+    "homepage": "https://github.com/mike14747/csv-parsing#readme",
+    "devDependencies": {
+        "concurrently": "^5.3.0",
+        "eslint": "^7.17.0",
+        "eslint-config-standard": "^16.0.2",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-react": "^7.22.0",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "nodemon": "^2.0.6"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "if-env": "^1.0.4",
+        "mysql2": "^1.7.0"
+    }
+}

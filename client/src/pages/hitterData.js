@@ -7,15 +7,18 @@ const HitterData = () => {
     useEffect(() => {
         axios.get('data/hitter_ratings.csv')
             .then(response => {
-                const [firstRow, ...restRows] = response.data.split('\r\n');
+                // only return non-zero length rows of data and extract the first row as the header
+                const [firstRow, ...restRows] = response.data.split(/(?:\r\n|\n)+/).filter(row => row.length > 0);
                 const heading = firstRow.split(',');
                 const table = restRows.map(row => {
-                    const columns = row.split(',');
+                    // split each row of the table (into columns) on commas unless the comma is within double quotes
+                    const columns = row.split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
                     return columns.reduce((acc, cur, index) => {
                         acc[heading[index]] = cur.trim();
                         return acc;
                     }, {});
                 });
+                console.log(table);
                 setHitters(table);
             })
             .catch(error => {

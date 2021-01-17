@@ -10,6 +10,7 @@ import Home from './pages/home/home';
 import About from './pages/about';
 import UsersFunctional from './pages/usersFunctional';
 import NoMatch from './pages/noMatch';
+import HitterData from './pages/hitterData';
 
 export default function App() {
     return (
@@ -25,6 +26,7 @@ export default function App() {
                     <Route exact path="/about" component={About} />
                     <Route path="/users1"><UsersClass /></Route>
                     <Route path="/users2"><UsersFunctional /></Route>
+                    <Route exact path="/hitterData"><HitterData /></Route>
                     <Route component={NoMatch} />
                 </Switch>
                 <Footer />

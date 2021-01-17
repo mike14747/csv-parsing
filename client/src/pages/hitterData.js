@@ -12,7 +12,10 @@ const HitterData = () => {
                 const heading = firstRow.split(',');
                 const table = restRows.map(row => {
                     // split each row of the table (into columns) on commas unless the comma is within double quotes
-                    const columns = row.split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
+                    // using a positive lookahead
+                    const columns = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    // or using a negative lookahead
+                    // const columns = row.split(/,(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)/);
                     return columns.reduce((acc, cur, index) => {
                         acc[heading[index]] = cur.trim();
                         return acc;
